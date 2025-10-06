@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { SharedModule } from './shared/shared.module'; // ← Import SharedModule
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Layout/header/header.component';
@@ -26,7 +26,9 @@ import { CardComponent } from './card/card.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CardComponent
+    CardComponent,
+    FormsModule, // ← Pour [(ngModel)]
+    SharedModule  // ← SharedModule importé ici
   ],
   providers: [],
   bootstrap: [AppComponent]

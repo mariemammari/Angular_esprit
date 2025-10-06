@@ -2,12 +2,10 @@
     <h2 class="mb-3">Liste des événements</h2>
 
     <!-- Recherche -->
-    <input type="text" class="form-control mb-4"
-           placeholder="Rechercher un événement"
-           [(ngModel)]="searchTerm">
+    <input type="text" class="form-control mb-4" placeholder="Rechercher un événement" [(ngModel)]="searchTerm">
 
-    <div class="row g-3" >
-        <div class="col-md-4" *ngFor="let event of Eventlist">
+    <div class="row g-3">
+        <div class="col-md-4" *ngFor="let event of Eventlist | contains:searchTerm">
             <!-- <div class="card h-100 shadow-sm" *ngIf="!searchTerm || event.titre.toLowerCase().includes(searchTerm.toLowerCase()) || event.lieu.toLowerCase().includes(searchTerm.toLowerCase());else notfound"> 
                 <img [src]="event.imageUrl" alt="Event Image"
                      class="card-img-top img-fluid"
@@ -30,14 +28,13 @@
             </div> -->
             <div>
                 <app-card></app-card>
-                
+
             </div>
         </div>
-       
+
     </div>
-     
+
 </div>
 <ng-template #notfound>
-                    <p class="text-danger">No results found</p>
-    </ng-template>
-
+    <p class="text-danger">No results found</p>
+</ng-template>
