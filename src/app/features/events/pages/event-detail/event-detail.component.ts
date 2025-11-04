@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventsService } from 'E:/4twin/angular/Workshops/Angular18_4TWIN4_25_26/src/app/data-access/events.service';
-
+import { Input } from '@angular/core';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { EventsService } from 'E:/4twin/angular/Workshops/Angular18_4TWIN4_25_26
   styleUrl: './event-detail.component.css'
 })
 export class EventDetailComponent implements OnInit {
-  event: any;
+   @Input() event: any;
 
   constructor(private route: ActivatedRoute, private eventsSvc: EventsService) {}
 
