@@ -1,0 +1,9 @@
+<app-search-bar (search)="onSearch($event)"></app-search-bar>
+
+<ul>
+    <li *ngFor="let event of events">
+        <a [routerLink]="[event.id]">
+            <app-event-card [event]="event"></app-event-card>
+        </a>
+    </li>
+</ul>
