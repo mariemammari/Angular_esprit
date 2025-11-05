@@ -1,5 +1,7 @@
 <app-search-bar (search)="onSearch($event)"></app-search-bar>
 
+<button (click)="goToAdd()" class="btn btn-primary">Proposer un événement</button>
+
 <ul>
     <li *ngFor="let event of events">
         <a [routerLink]="[event.id]">

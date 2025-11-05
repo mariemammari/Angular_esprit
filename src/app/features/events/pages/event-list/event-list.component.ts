@@ -1,22 +1,35 @@
-import { Component } from '@angular/core';
-import { EventsService } from 'E:/4twin/angular/Workshops/Angular18_4TWIN4_25_26/src/app/data-access/events.service';
+import { Component, OnInit } from '@angular/core';
+import { EventsService } from 'E:/4twin/angular/Workshops/Angular18_4TWIN4_25_26/src/app/data-access/events.service';;
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
-  styleUrl: './event-list.component.css'
+  styleUrls: ['./event-list.component.css']
 })
-export class EventListComponent {
-  events: any[] = [];
-  constructor(private eventsSvc: EventsService) { }
+export class EventListComponent implements OnInit {
 
-  ngOnInit() {
+  events: any[] = [];
+
+  constructor(
+    private eventsSvc: EventsService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    // Load all events initially
     this.events = this.eventsSvc.getAll();
   }
-  onSearch(term: string) {   // ✅ ajoute ceci
-    this.events = term
-      ? this.eventsSvc.search(term)
-      : this.eventsSvc.getAll();
+
+  onSearch(term: string) {
+    if (!term || term.trim() === '') {
+      this.events = this.eventsSvc.getAll();
+    } else {
+      this.events = this.eventsSvc.search(term);
+    }
   }
 
+  goToAdd() {
+    this.router.navigate(['events', 'add']);
+  }
 }

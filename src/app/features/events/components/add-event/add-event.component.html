@@ -1,0 +1,62 @@
+<h2>Ajouter un événement</h2>
+
+<form [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
+
+    <div>
+        <label>Titre</label>
+        <input formControlName="title" class="form-control">
+        <div *ngIf="addEventForm.get('title')?.touched && addEventForm.get('title')?.invalid">
+            <small *ngIf="addEventForm.get('title')?.errors?.['required']">Titre requis</small>
+            <small *ngIf="addEventForm.get('title')?.errors?.['minlength']">Min 5 caractères</small>
+            <small *ngIf="addEventForm.get('title')?.errors?.['pattern']">Lettres uniquement</small>
+        </div>
+    </div>
+
+    <div>
+        <label>Description</label>
+        <textarea formControlName="description" class="form-control"></textarea>
+        <div *ngIf="addEventForm.get('description')?.touched && addEventForm.get('description')?.invalid">
+            <small *ngIf="addEventForm.get('description')?.errors?.['required']">Description requise</small>
+            <small *ngIf="addEventForm.get('description')?.errors?.['minlength']">Min 30 caractères</small>
+        </div>
+    </div>
+
+    <div>
+        <label>Prix</label>
+        <input formControlName="price" class="form-control">
+        <div *ngIf="addEventForm.get('price')?.touched && addEventForm.get('price')?.invalid">
+            <small *ngIf="addEventForm.get('price')?.errors?.['required']">Prix requis</small>
+            <small *ngIf="addEventForm.get('price')?.errors?.['pattern']">Prix invalide</small>
+        </div>
+    </div>
+
+    <div>
+        <label>Nombre de places</label>
+        <input formControlName="nbPlaces" class="form-control">
+        <div *ngIf="addEventForm.get('nbPlaces')?.touched && addEventForm.get('nbPlaces')?.invalid">
+            <small *ngIf="addEventForm.get('nbPlaces')?.errors?.['required']">Requis</small>
+            <small *ngIf="addEventForm.get('nbPlaces')?.errors?.['pattern']">Entre 1 et 100</small>
+        </div>
+    </div>
+
+    <div>
+        <label>Date</label>
+        <input type="date" formControlName="date" class="form-control">
+        <div *ngIf="addEventForm.get('date')?.touched && addEventForm.get('date')?.invalid">
+            <small *ngIf="addEventForm.get('date')?.errors?.['required']">Date requise</small>
+            <small *ngIf="addEventForm.get('date')?.errors?.['futureDateInvalid']">
+                {{ addEventForm.get('date')?.errors?.['futureDateInvalid'] }}
+            </small>
+        </div>
+    </div>
+
+    <div>
+        <label>Image URL</label>
+        <input formControlName="image" class="form-control">
+    </div>
+
+    <button type="submit" [disabled]="addEventForm.invalid" class="btn btn-primary mt-2">
+        Ajouter
+    </button>
+
+</form>

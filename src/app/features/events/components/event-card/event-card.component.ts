@@ -9,4 +9,5 @@ import { Input } from '@angular/core';
 })
 export class EventCardComponent {
   @Input() event: any;
+  
 }
